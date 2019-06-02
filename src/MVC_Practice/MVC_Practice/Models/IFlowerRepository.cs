@@ -8,7 +8,7 @@ namespace MVC_Practice.Models
     public interface IFlowerRepository
     {
         IEnumerable<Flower> GetAllFlowers();
-        Flower GetFlowerById(int FlowerId);
+        Flower GetFlowerById(int flowerId);
 
     }
 }
