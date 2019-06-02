@@ -1,0 +1,17 @@
+﻿@model MVC_Practice.ViewModels.HomeViewModel
+
+<h2>@Model.Title</h2>
+
+@foreach (var flower in Model.Flowers)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+        <div class="thumbnail">
+            <img src="@flower.ImageThumbnailUrl" alt="">
+            <div class="caption">
+                <h3 class="pull-right">@flower.Price.ToString("c")</h3>
+                <h3>@flower.Name</h3>
+                <p>@flower.ShortDescription</p>
+            </div>
+        </div>
+    </div>
+}
