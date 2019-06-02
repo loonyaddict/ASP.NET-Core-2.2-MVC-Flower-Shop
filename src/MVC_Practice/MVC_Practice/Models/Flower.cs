@@ -10,5 +10,6 @@
         public string ImageUrl { get; set; }
         public string ImageThumbnailUrl { get; set; }
         public bool FlowerOfTheWeek { get; set; }
+        public bool IsInStock { get; set; }
     }
 }
