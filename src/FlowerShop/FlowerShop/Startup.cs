@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using FlowerShop.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FlowerShop.Models;
 
 namespace FlowerShop
 {
     public class Startup
     {
-        // Inject dependancy. This project uses appsettings.json. 
+        // Inject dependancy. This project uses appsettings.json.
         public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -21,7 +22,7 @@ namespace FlowerShop
         public void ConfigureServices(IServiceCollection services)
         {
             // Used to jump-start the project and be able to see some results in browser.
-            //services.AddTransient<IFlowerRepository, MockFlowerRepository>(); 
+            //services.AddTransient<IFlowerRepository, MockFlowerRepository>();
             services.AddTransient<IFlowerRepository, FlowerRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
@@ -36,7 +37,13 @@ namespace FlowerShop
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}"
+                );
+            });
         }
     }
 }

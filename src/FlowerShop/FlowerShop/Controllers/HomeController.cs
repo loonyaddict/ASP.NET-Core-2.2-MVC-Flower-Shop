@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using FlowerShop.Models;
+﻿using FlowerShop.Models;
 using FlowerShop.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -16,7 +16,6 @@ namespace FlowerShop.Controllers
             this.flowerRepository = flowerRepository;
         }
 
-        // GET: /<controller>/
         public IActionResult Index()
         {
             var flowers = flowerRepository
@@ -30,6 +29,15 @@ namespace FlowerShop.Controllers
             };
 
             return View(homeViewModel);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var flower = flowerRepository.GetFlowerById(id);
+            if (flower == null)
+                return NotFound();
+
+            return View(flower);
         }
     }
 }
