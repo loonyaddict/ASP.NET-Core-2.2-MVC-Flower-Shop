@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore;
+﻿using FlowerShop.Models;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using FlowerShop.Models;
+using NLog.Extensions.Logging;
 using System;
 
 namespace FlowerShop
@@ -32,6 +33,10 @@ namespace FlowerShop
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+             .ConfigureLogging((hostingContext, logging) =>
+             {
+                 logging.AddNLog();
+             })
+            .UseStartup<Startup>();
     }
 }
