@@ -9,6 +9,7 @@ namespace FlowerShop.Models
         }
 
         public DbSet<Flower> Flowers { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
     }
 }

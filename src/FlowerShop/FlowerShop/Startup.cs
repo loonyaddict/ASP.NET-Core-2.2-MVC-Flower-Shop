@@ -24,6 +24,7 @@ namespace FlowerShop
             // Used to jump-start the project and be able to see some results in browser.
             //services.AddTransient<IFlowerRepository, MockFlowerRepository>();
             services.AddTransient<IFlowerRepository, FlowerRepository>();
+            services.AddTransient<IFeedbackRepository, FeedbackRepository>();
 
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
